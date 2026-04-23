@@ -83,14 +83,14 @@ namespace spectrum {
     std::unique_ptr<spectrum::ReceiverTask> receiverTask = nullptr;
     std::unique_ptr<std::thread> receiverTaskThread = nullptr;
     int64_t textureId{};
-    std::chrono::system_clock::time_point begin;
+    std::chrono::high_resolution_clock::time_point begin;
     std::vector<long> durations;
     bool buffer_filled = false;
     int drop_count = 0;
     int drop_count_old = 0;
     int frame_count = 0;
     int frame_count_old = 0;
-    std::chrono::system_clock::time_point lastrun;
+    std::chrono::high_resolution_clock::time_point lastrun;
   };
 
 } // namespace
