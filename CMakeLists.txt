@@ -70,6 +70,14 @@ endif ()
 #
 add_subdirectory(shell)
 
+#
+# In-tree ("ext") plugins — compiled into the homescreen executable and
+# registered on the engine in shell/view/flutter_view.cc via
+# ExtPluginsApiRegisterPlugins().  Added after the shell subdirectory so that
+# the ${PROJECT_NAME} executable target already exists.
+#
+add_subdirectory(ext_plugins)
+
 #print_target_properties(asio)
 #print_target_properties(flutter)
 #print_target_properties(plugin_url_launcher)

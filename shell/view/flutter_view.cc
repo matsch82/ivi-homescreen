@@ -42,6 +42,13 @@
 extern void PluginsApiRegisterPlugins(FlutterDesktopEngineRef engine);
 #endif
 
+#ifdef ENABLE_EXT_PLUGINS
+// Defined in ext_plugins/ext_plugin_registrant.cc; dispatches to in-tree
+// plugins (e.g. acoustic_image_texture, spectrum_texture) enabled via
+// BUILD_EXT_PLUGIN_* / Yocto PACKAGECONFIG.
+extern void ExtPluginsApiRegisterPlugins(FlutterDesktopEngineRef engine);
+#endif
+
 #include "wayland/display.h"
 #include "wayland/window.h"
 
@@ -117,6 +124,10 @@ FlutterView::FlutterView(Configuration::Config config,
 
 #if ENABLE_PLUGINS
   PluginsApiRegisterPlugins(m_state->engine_state.get());
+#endif
+
+#ifdef ENABLE_EXT_PLUGINS
+  ExtPluginsApiRegisterPlugins(m_state->engine_state.get());
 #endif
 }
 
