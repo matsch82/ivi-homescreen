@@ -10,6 +10,12 @@
 
 include_guard()
 
+# CMP0079 lets us call target_link_libraries() from this directory
+# against the homescreen executable defined in shell/CMakeLists.txt.
+if (POLICY CMP0079)
+    cmake_policy(SET CMP0079 NEW)
+endif ()
+
 # Per-plugin switches (default OFF; Yocto PACKAGECONFIG flips them ON).
 option(BUILD_EXT_PLUGIN_ACOUSTIC_IMAGE_TEXTURE
         "Build in-tree acoustic_image_texture plugin" OFF)
